@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 
+	enumpb "./src/enum_example"
 	simplepb "./src/simple"
 	"github.com/golang/protobuf/proto"
 )
@@ -12,8 +13,15 @@ import (
 // import "C:/Users/abhis/Desktop/goPrac/protbuff-go/src/simple"
 func main() {
 	readAndWriteDemo()
+	doEnum()
 }
-
+func doEnum() {
+	em := enumpb.EnumMessage{
+		Id:           43,
+		DayOfTheWeek: enumpb.DayOfTheweek_MONDAY,
+	}
+	fmt.Println(em)
+}
 func doSimple() *simplepb.SimpleMessage {
 	ds := simplepb.SimpleMessage{
 		Id:         123,
