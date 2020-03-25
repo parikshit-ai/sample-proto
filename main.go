@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-
+	
+	complexpb "./src/complex"
 	enumpb "./src/enum_example"
 	simplepb "./src/simple"
 	"github.com/golang/protobuf/proto"
@@ -14,7 +15,29 @@ import (
 func main() {
 	readAndWriteDemo()
 	doEnum()
+	doComplex()
 }
+
+func doComplex() {
+	complex := complexpb.ComplexMessage{
+		OneDummy: &complexpb.DummyMessage{
+			Id:   32,
+			Name: "One Dummy",
+		},
+		MultiDummy: []*complexpb.DummyMessage{
+			{
+				Id:   32,
+				Name: "Multidummy 1",
+			},
+			{
+				Id:   425,
+				Name: "MultiDummy 2",
+			},
+		},
+	}
+	fmt.Println(complex)
+}
+
 func doEnum() {
 	em := enumpb.EnumMessage{
 		Id:           43,
